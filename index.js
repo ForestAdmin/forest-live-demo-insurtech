@@ -72,11 +72,11 @@ agent.customizeCollection('customers', customers => {
            
         //  customerId: customerId,
         
-        firstName: firstName,
-        lastName: lastName,
-        dateOfBirth: birthdate,
-        emailAddress: faker.internet.email(firstName.toLowerCase(), lastName.toLowerCase(), randomEmailDomain),
-        phoneNumber: phone,
+        first_name: firstName,
+        last_name: lastName,
+        date_of_birth: birthdate,
+        email_address: faker.internet.email(firstName.toLowerCase(), lastName.toLowerCase(), randomEmailDomain),
+        phone_number: phone,
         address: address,
         });
        }
@@ -95,3 +95,9 @@ agent
   .mountOnStandaloneServer(process.env.PORT || process.env.APPLICATION_PORT)
   // Start the agent.
   .start();
+
+  
+  
+  
+  
+  

@@ -1,17 +1,5 @@
 /* eslint-disable */
 export type Schema = {
-  'agents': {
-    plain: {
-      'agent_id': number;
-      'first_name': string;
-      'last_name': string;
-      'email_address': string;
-      'phone_number': string;
-      'address': string;
-    };
-    nested: {};
-    flat: {};
-  };
   'claims': {
     plain: {
       'claim_id': number;
@@ -33,13 +21,8 @@ export type Schema = {
       'policy:start_date': string;
       'policy:end_date': string;
       'policy:customer_id': number;
-      'policy:agent_id': number;
-      'policy:agent:agent_id': number;
-      'policy:agent:first_name': string;
-      'policy:agent:last_name': string;
-      'policy:agent:email_address': string;
-      'policy:agent:phone_number': string;
-      'policy:agent:address': string;
+      'policy:policy_coverage:policy_id': number;
+      'policy:policy_coverage:coverage_details': string;
     };
   };
   'customers': {
@@ -48,13 +31,55 @@ export type Schema = {
       'first_name': string;
       'last_name': string;
       'date_of_birth': string;
-      'gender': string;
       'email_address': string;
       'phone_number': string;
       'address': string;
     };
     nested: {};
     flat: {};
+  };
+  'insurance_agents': {
+    plain: {
+      'agent_id': number;
+      'first_name': string;
+      'last_name': string;
+      'email_address': string;
+      'phone_number': string;
+    };
+    nested: {};
+    flat: {};
+  };
+  'insurers': {
+    plain: {
+      'insurer_id': number;
+      'insurer_name': string;
+      'address': string;
+      'phone_number': string;
+    };
+    nested: {};
+    flat: {};
+  };
+  'payments': {
+    plain: {
+      'payment_id': number;
+      'policy_id': number;
+      'payment_amount': number;
+      'payment_date': string;
+    };
+    nested: {
+      'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
+    };
+    flat: {
+      'policy:policy_id': number;
+      'policy:policy_type': string;
+      'policy:coverage_amount': number;
+      'policy:premium_amount': number;
+      'policy:start_date': string;
+      'policy:end_date': string;
+      'policy:customer_id': number;
+      'policy:policy_coverage:policy_id': number;
+      'policy:policy_coverage:coverage_details': string;
+    };
   };
   'policies': {
     plain: {
@@ -65,87 +90,61 @@ export type Schema = {
       'start_date': string;
       'end_date': string;
       'customer_id': number;
-      'agent_id': number;
     };
     nested: {
-      'agent': Schema['agents']['plain'] & Schema['agents']['nested'];
+      'policy_coverage': Schema['policy_coverage']['plain'] & Schema['policy_coverage']['nested'];
     };
     flat: {
-      'agent:agent_id': number;
-      'agent:first_name': string;
-      'agent:last_name': string;
-      'agent:email_address': string;
-      'agent:phone_number': string;
-      'agent:address': string;
+      'policy_coverage:policy_id': number;
+      'policy_coverage:coverage_details': string;
     };
   };
-  'ratings': {
+  'policy_categories': {
     plain: {
-      'rating_id': number;
-      'policy_id': number;
-      'customer_id': number;
-      'rating_score': number;
-      'review_text': string;
-      'date': string;
-    };
-    nested: {
-      'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
-    };
-    flat: {
-      'policy:policy_id': number;
-      'policy:policy_type': string;
-      'policy:coverage_amount': number;
-      'policy:premium_amount': number;
-      'policy:start_date': string;
-      'policy:end_date': string;
-      'policy:customer_id': number;
-      'policy:agent_id': number;
-      'policy:agent:agent_id': number;
-      'policy:agent:first_name': string;
-      'policy:agent:last_name': string;
-      'policy:agent:email_address': string;
-      'policy:agent:phone_number': string;
-      'policy:agent:address': string;
-    };
-  };
-  'transactions': {
-    plain: {
-      'transaction_id': number;
-      'policy_id': number;
-      'transaction_type': string;
-      'transaction_amount': number;
-      'date': string;
-    };
-    nested: {
-      'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
-    };
-    flat: {
-      'policy:policy_id': number;
-      'policy:policy_type': string;
-      'policy:coverage_amount': number;
-      'policy:premium_amount': number;
-      'policy:start_date': string;
-      'policy:end_date': string;
-      'policy:customer_id': number;
-      'policy:agent_id': number;
-      'policy:agent:agent_id': number;
-      'policy:agent:first_name': string;
-      'policy:agent:last_name': string;
-      'policy:agent:email_address': string;
-      'policy:agent:phone_number': string;
-      'policy:agent:address': string;
-    };
-  };
-  'underwriters': {
-    plain: {
-      'underwriter_id': number;
-      'first_name': string;
-      'last_name': string;
-      'email_address': string;
-      'phone_number': string;
-      'address': string;
+      'category_id': number;
+      'category_name': string;
     };
     nested: {};
     flat: {};
+  };
+  'policy_coverage': {
+    plain: {
+      'policy_id': number;
+      'coverage_details': string;
+    };
+    nested: {
+      'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
+    };
+    flat: {
+      'policy:policy_id': number;
+      'policy:policy_type': string;
+      'policy:coverage_amount': number;
+      'policy:premium_amount': number;
+      'policy:start_date': string;
+      'policy:end_date': string;
+      'policy:customer_id': number;
+    };
+  };
+  'vehicles': {
+    plain: {
+      'vehicle_id': number;
+      'customer_id': number;
+      'make': string;
+      'model': string;
+      'year': number;
+      'vin': string;
+    };
+    nested: {
+      'customer': Schema['customers']['plain'] & Schema['customers']['nested'];
+    };
+    flat: {
+      'customer:customer_id': number;
+      'customer:first_name': string;
+      'customer:last_name': string;
+      'customer:date_of_birth': string;
+      'customer:email_address': string;
+      'customer:phone_number': string;
+      'customer:address': string;
+    };
   };
 };
