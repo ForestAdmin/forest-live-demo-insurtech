@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { createAgent } = require('@forestadmin/agent');
 const { createSqlDataSource } = require('@forestadmin/datasource-sql');
+const { faker } = require('@faker-js/faker');
 
 const dialectOptions = {};
 
@@ -40,6 +41,54 @@ const agent = createAgent({
 
 // Add customizations here.
 // agent.customizeCollection('collectionName', collection => ...);
+
+agent.customizeCollection('customers', customers => {
+  customers.addAction('add fake customer', {
+    scope: 'Global',
+    execute: async (context, resultBuilder) => {
+      const customersToCreate = [];
+
+      for (let i = 0; i < 10; i++) {
+        let prevCustomerId = null;
+        let customerId = null;
+        
+        do {
+          customerId = faker.datatype.number({
+            'min': 10,
+            'max': 1000000
+          });
+        } while (customerId === prevCustomerId);
+        
+        prevCustomerId = customerId;
+       const firstName = faker.name.firstName();
+        const lastName = faker.name.lastName();
+        const emailDomains = ["gmail.com", "yahoo.fr", "example.com", "hotmail.com"]
+        const randomEmailDomain = emailDomains[Math.floor(Math.random() * emailDomains.length)];
+        const birthdate = faker.date.birthdate();
+        const phone = faker.phone.number();
+        const address = faker.address.streetAddress();
+        console.log(customerId)
+        customersToCreate.push({
+           
+        //  customerId: customerId,
+        
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: birthdate,
+        emailAddress: faker.internet.email(firstName.toLowerCase(), lastName.toLowerCase(), randomEmailDomain),
+        phoneNumber: phone,
+        address: address,
+        });
+       }
+     
+      await  context.collection.create(customersToCreate);
+      
+
+    //  res.status(200).send({ success: 'Customers  successfully created' });
+     return resultBuilder.success('Customers  successfully created');
+    },
+  });
+});
 
 agent
   // Expose an HTTP endpoint.

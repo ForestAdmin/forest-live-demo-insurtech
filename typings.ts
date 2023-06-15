@@ -34,14 +34,6 @@ export type Schema = {
       'policy:end_date': string;
       'policy:customer_id': number;
       'policy:agent_id': number;
-      'policy:customer:customer_id': number;
-      'policy:customer:first_name': string;
-      'policy:customer:last_name': string;
-      'policy:customer:date_of_birth': string;
-      'policy:customer:gender': string;
-      'policy:customer:email_address': string;
-      'policy:customer:phone_number': string;
-      'policy:customer:address': string;
       'policy:agent:agent_id': number;
       'policy:agent:first_name': string;
       'policy:agent:last_name': string;
@@ -76,18 +68,9 @@ export type Schema = {
       'agent_id': number;
     };
     nested: {
-      'customer': Schema['customers']['plain'] & Schema['customers']['nested'];
       'agent': Schema['agents']['plain'] & Schema['agents']['nested'];
     };
     flat: {
-      'customer:customer_id': number;
-      'customer:first_name': string;
-      'customer:last_name': string;
-      'customer:date_of_birth': string;
-      'customer:gender': string;
-      'customer:email_address': string;
-      'customer:phone_number': string;
-      'customer:address': string;
       'agent:agent_id': number;
       'agent:first_name': string;
       'agent:last_name': string;
@@ -107,7 +90,6 @@ export type Schema = {
     };
     nested: {
       'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
-      'customer': Schema['customers']['plain'] & Schema['customers']['nested'];
     };
     flat: {
       'policy:policy_id': number;
@@ -118,28 +100,12 @@ export type Schema = {
       'policy:end_date': string;
       'policy:customer_id': number;
       'policy:agent_id': number;
-      'policy:customer:customer_id': number;
-      'policy:customer:first_name': string;
-      'policy:customer:last_name': string;
-      'policy:customer:date_of_birth': string;
-      'policy:customer:gender': string;
-      'policy:customer:email_address': string;
-      'policy:customer:phone_number': string;
-      'policy:customer:address': string;
       'policy:agent:agent_id': number;
       'policy:agent:first_name': string;
       'policy:agent:last_name': string;
       'policy:agent:email_address': string;
       'policy:agent:phone_number': string;
       'policy:agent:address': string;
-      'customer:customer_id': number;
-      'customer:first_name': string;
-      'customer:last_name': string;
-      'customer:date_of_birth': string;
-      'customer:gender': string;
-      'customer:email_address': string;
-      'customer:phone_number': string;
-      'customer:address': string;
     };
   };
   'transactions': {
@@ -162,14 +128,6 @@ export type Schema = {
       'policy:end_date': string;
       'policy:customer_id': number;
       'policy:agent_id': number;
-      'policy:customer:customer_id': number;
-      'policy:customer:first_name': string;
-      'policy:customer:last_name': string;
-      'policy:customer:date_of_birth': string;
-      'policy:customer:gender': string;
-      'policy:customer:email_address': string;
-      'policy:customer:phone_number': string;
-      'policy:customer:address': string;
       'policy:agent:agent_id': number;
       'policy:agent:first_name': string;
       'policy:agent:last_name': string;

@@ -255,7 +255,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "customers-0-add-fake-customer",
+          "name": "add fake customer",
+          "type": "global",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/customers/0/add-fake-customer",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -281,13 +294,13 @@
           "inverseOf": null,
           "isFilterable": true,
           "isPrimaryKey": true,
-          "isReadOnly": false,
-          "isRequired": true,
+          "isReadOnly": true,
+          "isRequired": false,
           "isSortable": true,
           "isVirtual": false,
           "reference": null,
           "type": "Number",
-          "validations": [{"type": "is present", "message": "Failed validation rule: 'Present'"}]
+          "validations": []
         },
         {
           "defaultValue": null,
@@ -384,40 +397,6 @@
           "reference": null,
           "type": "String",
           "validations": [{"type": "is present", "message": "Failed validation rule: 'Present'"}]
-        },
-        {
-          "defaultValue": null,
-          "enums": null,
-          "field": "policies",
-          "integration": null,
-          "inverseOf": "customer",
-          "isFilterable": false,
-          "isPrimaryKey": false,
-          "isReadOnly": false,
-          "isRequired": false,
-          "isSortable": true,
-          "isVirtual": false,
-          "reference": "policies.customer_id",
-          "relationship": "HasMany",
-          "type": ["Number"],
-          "validations": []
-        },
-        {
-          "defaultValue": null,
-          "enums": null,
-          "field": "ratings",
-          "integration": null,
-          "inverseOf": "customer",
-          "isFilterable": false,
-          "isPrimaryKey": false,
-          "isReadOnly": false,
-          "isRequired": false,
-          "isSortable": true,
-          "isVirtual": false,
-          "reference": "ratings.customer_id",
-          "relationship": "HasMany",
-          "type": ["Number"],
-          "validations": []
         }
       ],
       "icon": null,
@@ -486,17 +465,16 @@
         {
           "defaultValue": null,
           "enums": null,
-          "field": "customer",
+          "field": "customer_id",
           "integration": null,
-          "inverseOf": "policies",
+          "inverseOf": null,
           "isFilterable": true,
           "isPrimaryKey": false,
           "isReadOnly": false,
           "isRequired": true,
           "isSortable": true,
           "isVirtual": false,
-          "reference": "customers.customer_id",
-          "relationship": "BelongsTo",
+          "reference": null,
           "type": "Number",
           "validations": [{"type": "is present", "message": "Failed validation rule: 'Present'"}]
         },
@@ -631,17 +609,16 @@
         {
           "defaultValue": null,
           "enums": null,
-          "field": "customer",
+          "field": "customer_id",
           "integration": null,
-          "inverseOf": "ratings",
+          "inverseOf": null,
           "isFilterable": true,
           "isPrimaryKey": false,
           "isReadOnly": false,
           "isRequired": true,
           "isSortable": true,
           "isVirtual": false,
-          "reference": "customers.customer_id",
-          "relationship": "BelongsTo",
+          "reference": null,
           "type": "Number",
           "validations": [{"type": "is present", "message": "Failed validation rule: 'Present'"}]
         },
@@ -946,6 +923,6 @@
   "metadata": {
     "liana": "forest-nodejs-agent",
     "liana_version": "1.8.8",
-    "stack": {"engine": "nodejs", "engine_version": "18.14.0"}
+    "stack": {"engine": "nodejs", "engine_version": "16.15.0"}
   }
 }
