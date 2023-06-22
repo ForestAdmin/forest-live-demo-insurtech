@@ -1,7 +1,20 @@
 {
   "collections": [
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "claims-0-approve-a-claim",
+          "name": "Approve a Claim",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/claims/0/approve-a-claim",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -378,7 +391,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "insurers-0-add-fake-insurer",
+          "name": "add fake insurer",
+          "type": "global",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/insurers/0/add-fake-insurer",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -535,7 +561,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "policies-0-renew-policie",
+          "name": "Renew Policie",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/policies/0/renew-policie",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,

@@ -98,6 +98,62 @@ agent
 
   
   
+ agent.customizeCollection('insurers', insurers => {
+ 
+  insurers.addAction('add fake insurer', {
+        scope: 'Global',
+        execute: async (context, resultBuilder) => {
+          const insurersToCreate = [];
+    
+          for (let i = 0; i < 10; i++) {
+            let prevInsurerId = null;
+            let insurerId = null;
+            
+            do {
+              insurerId = faker.datatype.number({
+                'min': 10,
+                'max': 1000000
+              });
+            } while (insurerId === prevInsurerId);
+            
+            prevInsurerId = insurerId;
+            
+            const insurerName = faker.company.name();
+            const address = faker.address.streetAddress();
+            const phoneNumber = faker.phone.number();
+            
+            insurersToCreate.push({
+              insurer_id: insurerId,
+              insurer_name: insurerName,
+              address: address,
+              phone_number: phoneNumber,
+            });
+          }
+          await  context.collection.create(insurersToCreate);
+          // await context.database.models.insurers.bulkCreate(insurersToCreate);
+    
+          return resultBuilder.success('Insurers successfully created');
+        },
+      });
+
+ })
   
+
+  agent.customizeCollection('claims', claims => {
+    claims.addAction('Approve a Claim', {
+      scope:'Single',
+      execute: async (context, resultBuilder) => {
+        return resultBuilder.success('Claim Approved');
+      },
+    })
+  })
   
+  agent.customizeCollection('policies', policies => {
+    policies.addAction('Renew Policie', {
+      scope:'Single',
+      execute: async (context, resultBuilder) => {
+        return resultBuilder.success('Policie renewed');
+      },
+    })
+  })
   
