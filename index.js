@@ -160,7 +160,39 @@ agent
 agent.customizeCollection('insurance_agents', insuranceAgent => {
   insuranceAgent.addAction('Add Insurance Agent', {
     scope: 'Global',
+
     execute: async (context, resultBuilder) => {
+      const insuranceAgentTocreate = [];
+      for (let i = 0; i < 10; i++) {
+        let prevInsuranceAgentId = null;
+        let insuranceAgentId = null;
+
+        do {
+          insuranceAgentId = faker.datatype.number({
+            'min': 10,
+            'max': 1000000
+          });
+        } while (insuranceAgentId === prevInsuranceAgentId);
+
+        prevInsuranceAgentId = insuranceAgentId;
+
+        const firstName = faker.person.firstName();
+        const lastName = faker.person.lastName();
+        const emailDomains = ["gmail.com", "yahoo.fr", "example.com", "hotmail.com"]
+        const randomEmailDomain = emailDomains[Math.floor(Math.random() * emailDomains.length)];
+        const phone = faker.phone.number();
+
+        insuranceAgentTocreate.push ({
+          agent_id:insuranceAgentId,
+          first_name: firstName,
+          last_name: lastName,
+          email_address: faker.internet.email(firstName.toLowerCase(), lastName.toLowerCase(), randomEmailDomain),
+          phone_number: phone,
+        });
+      }
+      await context.collection.create(insuranceAgentTocreate);
+
+
       return resultBuilder.success('Insurance Agent added');
     },
   })
