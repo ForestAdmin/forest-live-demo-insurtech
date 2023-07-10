@@ -425,24 +425,7 @@
       "segments": []
     },
     {
-<<<<<<< HEAD
-      "actions": [
-        {
-          "id": "insurance_agents-0-add-insurance-agent",
-          "name": "Add Insurance Agent",
-          "type": "global",
-          "baseUrl": null,
-          "endpoint": "/forest/_actions/insurance_agents/0/add-insurance-agent",
-          "httpMethod": "POST",
-          "redirect": null,
-          "download": false,
-          "fields": [],
-          "hooks": {"load": false, "change": ["changeHook"]}
-        }
-      ],
-=======
       "actions": [],
->>>>>>> 876650a7176ce3f7db14780a2692a20d86b3887a
       "fields": [
         {
           "defaultValue": null,
@@ -1145,6 +1128,6 @@
   "metadata": {
     "liana": "forest-nodejs-agent",
     "liana_version": "1.8.8",
-    "stack": {"engine": "nodejs", "engine_version": "16.15.1"}
+    "stack": {"engine": "nodejs", "engine_version": "16.15.0"}
   }
 }

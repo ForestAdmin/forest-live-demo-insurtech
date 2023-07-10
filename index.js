@@ -51,14 +51,14 @@ agent.customizeCollection('customers', customers => {
       for (let i = 0; i < 10; i++) {
         let prevCustomerId = null;
         let customerId = null;
-
+        
         do {
           customerId = faker.datatype.number({
             'min': 10,
             'max': 1000000
           });
         } while (customerId === prevCustomerId);
-
+        
         prevCustomerId = customerId;
        const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
@@ -69,9 +69,9 @@ agent.customizeCollection('customers', customers => {
         const address = faker.address.streetAddress();
         console.log(customerId)
         customersToCreate.push({
-
+           
         //  customerId: customerId,
-
+        
         first_name: firstName,
         last_name: lastName,
         date_of_birth: birthdate,
@@ -80,9 +80,9 @@ agent.customizeCollection('customers', customers => {
         address: address,
         });
        }
-
+     
       await  context.collection.create(customersToCreate);
-
+      
 
     //  res.status(200).send({ success: 'Customers  successfully created' });
      return resultBuilder.success('Customers  successfully created');
@@ -96,32 +96,32 @@ agent
   // Start the agent.
   .start();
 
-
-
+  
+  
  agent.customizeCollection('insurers', insurers => {
-
+ 
   insurers.addAction('add fake insurer', {
         scope: 'Global',
         execute: async (context, resultBuilder) => {
           const insurersToCreate = [];
-
+    
           for (let i = 0; i < 10; i++) {
             let prevInsurerId = null;
             let insurerId = null;
-
+            
             do {
               insurerId = faker.datatype.number({
                 'min': 10,
                 'max': 1000000
               });
             } while (insurerId === prevInsurerId);
-
+            
             prevInsurerId = insurerId;
-
+            
             const insurerName = faker.company.name();
             const address = faker.address.streetAddress();
             const phoneNumber = faker.phone.number();
-
+            
             insurersToCreate.push({
               insurer_id: insurerId,
               insurer_name: insurerName,
@@ -131,13 +131,13 @@ agent
           }
           await  context.collection.create(insurersToCreate);
           // await context.database.models.insurers.bulkCreate(insurersToCreate);
-
+    
           return resultBuilder.success('Insurers successfully created');
         },
       });
 
  })
-
+  
 
   agent.customizeCollection('claims', claims => {
     claims.addAction('Approve a Claim', {
@@ -147,7 +147,7 @@ agent
       },
     })
   })
-
+  
   agent.customizeCollection('policies', policies => {
     policies.addAction('Renew Policie', {
       scope:'Single',
@@ -157,17 +157,6 @@ agent
     })
   })
 
-<<<<<<< HEAD
-agent.customizeCollection('insurance_agents', insuranceAgent => {
-  insuranceAgent.addAction('Add Insurance Agent', {
-    scope: 'Global',
-    execute: async (context, resultBuilder) => {
-      return resultBuilder.success('Insurance Agent added');
-    },
-  })
-})
-
-=======
   agent.customizeCollection('payments', payments => {
     payments.addAction('Approve payment', {
       scope:'Single',
@@ -222,5 +211,3 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
   
    })
 
-  
->>>>>>> 876650a7176ce3f7db14780a2692a20d86b3887a
