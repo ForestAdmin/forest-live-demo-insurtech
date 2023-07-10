@@ -425,7 +425,6 @@
       "segments": []
     },
     {
-<<<<<<< HEAD
       "actions": [
         {
           "id": "insurance_agents-0-add-insurance-agent",
@@ -440,9 +439,6 @@
           "hooks": {"load": false, "change": ["changeHook"]}
         }
       ],
-=======
-      "actions": [],
->>>>>>> 876650a7176ce3f7db14780a2692a20d86b3887a
       "fields": [
         {
           "defaultValue": null,
