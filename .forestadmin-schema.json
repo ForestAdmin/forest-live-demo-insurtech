@@ -425,7 +425,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "insurance_agents-0-add-insurance-agent",
+          "name": "Add Insurance Agent",
+          "type": "global",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/insurance_agents/0/add-insurance-agent",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
