@@ -156,4 +156,59 @@ agent
       },
     })
   })
+
+  agent.customizeCollection('payments', payments => {
+    payments.addAction('Approve payment', {
+      scope:'Single',
+      execute: async (context, resultBuilder) => {
+        return resultBuilder.success('Payment Approved');
+      },
+    })
+  })
+  
+
+  agent.customizeCollection('vehicles', vehicles => {
+ 
+    vehicles.addAction('add fake vehicles', {
+          scope: 'Global',
+          execute: async (context, resultBuilder) => {
+            const vehiclesToCreate = [];
+      
+            for (let i = 0; i < 10; i++) {
+              let prevVehiclesId = null;
+              let vehiclesId = null;
+              
+              do {
+                vehiclesId = faker.datatype.number({
+                  'min': 10,
+                  'max': 1000000
+                });
+              } while (vehiclesId === prevVehiclesId);
+              
+              prevVehiclesId = vehiclesId;
+              
+              const Make = faker.vehicle.type() ;
+              const Model = faker.vehicle.model();
+              const Year = faker.phone.number();
+              const Vin = faker.vehicle.manufacturer();
+              
+              vehiclesToCreate.push({
+                vehicle_id: vehiclesId,
+                model:Model,
+                make: Make,
+                year: Year,
+                vin: Vin,
+              });
+            }
+            await  context.collection.create(vehiclesToCreate);
+
+
+            
+      
+            return resultBuilder.success('vehicles successfully created');
+          },
+        });
+  
+   })
+
   

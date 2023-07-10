@@ -34,9 +34,32 @@ export type Schema = {
       'email_address': string;
       'phone_number': string;
       'address': string;
+      'assigne ': string;
     };
     nested: {};
     flat: {};
+  };
+  'documents': {
+    plain: {
+      'file reference': number;
+      'type': string;
+      'is_verified': boolean;
+      'document': string;
+      'customer ': number;
+    };
+    nested: {
+      'customer': Schema['customers']['plain'] & Schema['customers']['nested'];
+    };
+    flat: {
+      'customer:customer_id': number;
+      'customer:first_name': string;
+      'customer:last_name': string;
+      'customer:date_of_birth': string;
+      'customer:email_address': string;
+      'customer:phone_number': string;
+      'customer:address': string;
+      'customer:assigne ': string;
+    };
   };
   'insurance_agents': {
     plain: {
@@ -131,7 +154,7 @@ export type Schema = {
       'customer_id': number;
       'make': string;
       'model': string;
-      'year': number;
+      'year': string;
       'vin': string;
     };
     nested: {
@@ -145,6 +168,7 @@ export type Schema = {
       'customer:email_address': string;
       'customer:phone_number': string;
       'customer:address': string;
+      'customer:assigne ': string;
     };
   };
 };
