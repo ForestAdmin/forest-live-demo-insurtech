@@ -425,6 +425,7 @@
       "segments": []
     },
     {
+<<<<<<< HEAD
       "actions": [
         {
           "id": "insurance_agents-0-add-insurance-agent",
@@ -439,6 +440,9 @@
           "hooks": {"load": false, "change": ["changeHook"]}
         }
       ],
+=======
+      "actions": [],
+>>>>>>> 876650a7176ce3f7db14780a2692a20d86b3887a
       "fields": [
         {
           "defaultValue": null,
@@ -623,7 +627,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "payments-0-approve-payment",
+          "name": "Approve payment",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/payments/0/approve-payment",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -1001,7 +1018,20 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "vehicles-0-add-fake-vehicles",
+          "name": "add fake vehicles",
+          "type": "global",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/vehicles/0/add-fake-vehicles",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
