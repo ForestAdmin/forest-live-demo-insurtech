@@ -176,8 +176,9 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
 
         prevInsuranceAgentId = insuranceAgentId;
 
-        const firstName = faker.person.firstName();
-        const lastName = faker.person.lastName();
+        const firstName = faker.name.firstName();
+        const lastName = faker.name.lastName();
+        
         const emailDomains = ["gmail.com", "yahoo.fr", "example.com", "hotmail.com"]
         const randomEmailDomain = emailDomains[Math.floor(Math.random() * emailDomains.length)];
         const phone = faker.phone.number();
