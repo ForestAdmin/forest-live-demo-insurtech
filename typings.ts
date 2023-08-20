@@ -21,8 +21,14 @@ export type Schema = {
       'policy:start_date': string;
       'policy:end_date': string;
       'policy:customer_id': number;
-      'policy:policy_coverage:policy_id': number;
-      'policy:policy_coverage:coverage_details': string;
+      'policy:customer:customer_id': number;
+      'policy:customer:first_name': string;
+      'policy:customer:last_name': string;
+      'policy:customer:date_of_birth': string;
+      'policy:customer:email_address': string;
+      'policy:customer:phone_number': string;
+      'policy:customer:address': string;
+      'policy:customer:assigne ': string;
     };
   };
   'customers': {
@@ -100,8 +106,14 @@ export type Schema = {
       'policy:start_date': string;
       'policy:end_date': string;
       'policy:customer_id': number;
-      'policy:policy_coverage:policy_id': number;
-      'policy:policy_coverage:coverage_details': string;
+      'policy:customer:customer_id': number;
+      'policy:customer:first_name': string;
+      'policy:customer:last_name': string;
+      'policy:customer:date_of_birth': string;
+      'policy:customer:email_address': string;
+      'policy:customer:phone_number': string;
+      'policy:customer:address': string;
+      'policy:customer:assigne ': string;
     };
   };
   'policies': {
@@ -115,37 +127,17 @@ export type Schema = {
       'customer_id': number;
     };
     nested: {
-      'policy_coverage': Schema['policy_coverage']['plain'] & Schema['policy_coverage']['nested'];
+      'customer': Schema['customers']['plain'] & Schema['customers']['nested'];
     };
     flat: {
-      'policy_coverage:policy_id': number;
-      'policy_coverage:coverage_details': string;
-    };
-  };
-  'policy_categories': {
-    plain: {
-      'category_id': number;
-      'category_name': string;
-    };
-    nested: {};
-    flat: {};
-  };
-  'policy_coverage': {
-    plain: {
-      'policy_id': number;
-      'coverage_details': string;
-    };
-    nested: {
-      'policy': Schema['policies']['plain'] & Schema['policies']['nested'];
-    };
-    flat: {
-      'policy:policy_id': number;
-      'policy:policy_type': string;
-      'policy:coverage_amount': number;
-      'policy:premium_amount': number;
-      'policy:start_date': string;
-      'policy:end_date': string;
-      'policy:customer_id': number;
+      'customer:customer_id': number;
+      'customer:first_name': string;
+      'customer:last_name': string;
+      'customer:date_of_birth': string;
+      'customer:email_address': string;
+      'customer:phone_number': string;
+      'customer:address': string;
+      'customer:assigne ': string;
     };
   };
   'vehicles': {
