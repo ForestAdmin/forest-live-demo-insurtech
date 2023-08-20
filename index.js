@@ -42,6 +42,8 @@ const agent = createAgent({
 // Add customizations here.
 // agent.customizeCollection('collectionName', collection => ...);
 
+
+
 agent.customizeCollection('customers', customers => {
   customers.addAction('add fake customer', {
     scope: 'Global',
@@ -130,7 +132,7 @@ agent
             });
           }
           await  context.collection.create(insurersToCreate);
-          // await context.database.models.insurers.bulkCreate(insurersToCreate);
+          
     
           return resultBuilder.success('Insurers successfully created');
         },
@@ -156,6 +158,10 @@ agent
       },
     })
   })
+
+
+
+
 
 agent.customizeCollection('insurance_agents', insuranceAgent => {
   insuranceAgent.addAction('Add Insurance Agent', {
@@ -202,7 +208,7 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
   agent.customizeCollection('payments', payments => {
     payments.addAction('Approve payment', {
       scope:'Single',
-      execute: async (context, resultBuilder) => {
+      execute: async (context, resultBuilder) => { 
         return resultBuilder.success('Payment Approved');
       },
     })
@@ -229,19 +235,35 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
 
               prevVehiclesId = vehiclesId;
 
+              async function getRandomInstance (model) {
+                const collection = await context.dataSource.getCollection('customers');
+                const id = await collection.list({}, ['customer_id']);
+                
+                console.log(id)
+               return  faker.helpers.arrayElement(id)['customer_id']
+                // let record = await model.findAll();
+                // record = faker.helpers.shuffle(record)[0];
+                // return record 
+              }
+
               const Make = faker.vehicle.type() ;
               const Model = faker.vehicle.model();
-              const Year = faker.phone.number();
+              // const Year = new Date(faker.date.recent());
               const Vin = faker.vehicle.manufacturer();
+              const startYear = 2000;
+              const currentYear = new Date().getFullYear();
+              const randomYear = faker.date.between(new Date(startYear, 0, 1), new Date(currentYear, 11, 31)).getFullYear();
+              const randomCustomer =   await getRandomInstance()
+    
 
               vehiclesToCreate.push({
                 vehicle_id: vehiclesId,
                 model:Model,
                 make: Make,
-                year: Year,
+                year: randomYear,
                 vin: Vin,
-              });
-            }
+                customer_id: randomCustomer
+              })  }
             await  context.collection.create(vehiclesToCreate);
 
 
@@ -250,7 +272,6 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
             return resultBuilder.success('vehicles successfully created');
           },
         });
-
    })
 
   
