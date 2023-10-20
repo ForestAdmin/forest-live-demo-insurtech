@@ -241,14 +241,14 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
                 
                 console.log(id)
                return  faker.helpers.arrayElement(id)['customer_id']
-                // let record = await model.findAll();
+                //let record = await model.findAll();
                 // record = faker.helpers.shuffle(record)[0];
                 // return record 
               }
 
               const Make = faker.vehicle.type() ;
               const Model = faker.vehicle.model();
-              // const Year = new Date(faker.date.recent());
+               const Year = new Date(faker.date.recent());
               const Vin = faker.vehicle.manufacturer();
               const startYear = 2000;
               const currentYear = new Date().getFullYear();
@@ -274,4 +274,4 @@ agent.customizeCollection('insurance_agents', insuranceAgent => {
         });
    })
 
-  
+
